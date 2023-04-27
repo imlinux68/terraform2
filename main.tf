@@ -12,7 +12,7 @@ resource "aws_vpc" "mtc_vpc" {
   enable_dns_support = true
 
   tags = {
-    "Name" = "mtc_vpc"
+    "Name" = "mtc_vpc-${random_id.random.dec}"
   }
 }
 
@@ -20,6 +20,30 @@ resource "aws_internet_gateway" "mtc_internet_gateway" {
   vpc_id = aws_vpc.mtc_vpc.id
 
   tags = {
-    "Name" = "mtc_igw"
+    "Name" = "mtc_igw-${random_id.random.dec}"
   }
 }
+
+
+
+resource "random_id" "random" {
+  byte_length = 2
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
