@@ -42,6 +42,15 @@ resource "aws_route" "default_route" {
   gateway_id = aws_internet_gateway.mtc_internet_gateway.id
 }
 
+
+resource "aws_default_route_table" "mtc_private_rt1" {
+  default_route_table_id = aws_vpc.mtc_vpc.default_route_table_id
+
+  tags = {
+    "Name" = "mtc_private"
+  }
+}
+
 resource "random_id" "random" {
   byte_length = 5
 }
