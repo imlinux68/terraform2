@@ -1,2 +1,3 @@
 [servers]
 #run this command locally -> printf '\n10.10.10.10' >> aws_hosts
+

@@ -44,3 +44,17 @@ resource "aws_instance" "mtc_main" {
     command = "sed -i '/^[0-9]/d' aws_hosts"
   }
 }
+
+resource "null_resource" "grafana_update" {
+  count = var.main_instance_count
+  provisioner "remote-exec" {
+    inline = ["sudo yum update grafana -y && touch upgrade.log && echo 'I updated grafana' >> upgrade.log"]
+
+    connection {
+      type = "ssh"
+      user = "ec2-user"
+      private_key = file("/home/user/.ssh/ec2-instances")
+      host = aws_instance.mtc_main[count.index].public_ip
+    }
+  }
+}
