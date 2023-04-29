@@ -1,0 +1,19 @@
+#list installes modules 
+ansible-galaxy collection list
+
+#install pacman 
+ansible-galaxy collection install community.general
+
+# run ping on lh
+ansible localhost -m ping
+
+#run ls on localhost
+ansible localhost -a "/bin/ls"
+
+#run echo on localhoast
+ansible localhost -a "/bin/echo 'hello'"
+
+#install nginx locally on manjaro state=absent to remove nginx
+ansible localhost -m community.general.pacman -a "name=nginx state=present" --become 
+
+
