@@ -31,6 +31,10 @@ resource "aws_instance" "mtc_main" {
     volume_size = var.main_vol_size
   }
 
+
+  provisioner "local-exec" {
+    command = "printf '\n${self.public_ip}' >> aws_hosts"
+  }
   tags = {
     "Name" = "mtc-main-${random_id.mtc_node_id[count.index].dec}"
   }
